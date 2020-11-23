@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <string>
 
 template <typename T>
 class Plotter
