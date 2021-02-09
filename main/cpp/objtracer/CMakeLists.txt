@@ -18,25 +18,31 @@
 # Build library:
 #============================================================================
 set( LIB	demobj )
-set( SRC 	
+set( SRC
+        example_exam/Building.cpp example_exam/House.cpp example_exam/Person.cpp example_exam/Room.cpp
+        example_exam/HolidayHome.cpp example_exam/Rentable.cpp example_exam/BathRoom.cpp
+        example_exam/BedRoom.cpp example_exam/Kitchen.cpp
 		Bicycle.cpp Body.cpp Engine.cpp Exception.cpp LandVehicle.cpp
-		Motorcycle.cpp PassengerRoadVehicle.cpp Person.cpp 
-		RoadVehicle.cpp SailBoat.cpp Unicycle.cpp 
+		Motorcycle.cpp PassengerRoadVehicle.cpp Person.cpp
+		RoadVehicle.cpp SailBoat.cpp Unicycle.cpp
 		WaterVehicle.cpp Wheel.cpp )
 #----------------------
 include_directories( ${LOG_SRC} )
 add_library( ${LIB}        ${SRC}  )
 set_target_properties( ${LIB} PROPERTIES    SOVERSION	0     VERSION 0.0.0 )
 if( APPLE )
-	set_target_properties( ${LIB} PROPERTIES 
+	set_target_properties( ${LIB} PROPERTIES
 			INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_LOCATION} )
 endif( APPLE )
 target_link_libraries( ${LIB} 		tracer )
 #-----------------------
-install( TARGETS ${LIB} LIBRARY 
+install( TARGETS ${LIB} LIBRARY
                 DESTINATION 	${LIB_INSTALL_LOCATION}
-                PERMISSIONS 	OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ )	 
-install( FILES 
+                PERMISSIONS 	OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ )
+install( FILES
+        example_exam/Building.h example_exam/House.h example_exam/Person.h example_exam/Room.h
+        example_exam/HolidayHome.h example_exam/Rentable.h example_exam/BathRoom.h example_exam/BedRoom.h
+        example_exam/Kitchen.h
 		Bicycle.h demobj.h Engine.h Exception.h LandVehicle.h Motorcycle.h
 		PassengerRoadVehicle.h Person.h RoadVehicle.h SailBoat.h Vehicle.h
 		WaterVehicle.h Wheel.h
@@ -52,7 +58,7 @@ unset( LIB )
 set(EXEC	app_exec)
 set(SRC
 		${EXEC}.cpp app_fcalls.cpp app_essentialops.cpp app_exception.cpp
-		app_copy.cpp app_hierarchies.cpp app_poly1.cpp app_poly2.cpp)
+        example_exam/app_example_exam.cpp app_copy.cpp app_hierarchies.cpp app_poly1.cpp app_poly2.cpp)
 #---------------------
 include_directories(${LOG_SRC})
 add_executable(${EXEC}	   ${SRC})
@@ -60,7 +66,7 @@ target_link_libraries(${EXEC} demobj tracer ${G3LOG_LIBRARIES} )
 #---------------------
 install(TARGETS ${EXEC} RUNTIME DESTINATION 	${BIN_INSTALL_LOCATION})
 #------------------------
-set(PROJECTS   app_fcalls app_essential_ops app_exception
+set(PROJECTS   app_fcalls app_essential_ops app_exception app_example_exam
 				app_copy app_hierarchies app_poly1 app_poly2)
 foreach (PROJ ${PROJECTS})
 		add_test(NAME  app_exec_${PROJ}
@@ -73,5 +79,3 @@ unset(EXEC)
 unset(PROJECTS)
 
 #############################################################################
-
-
