@@ -58,7 +58,7 @@ unset( LIB )
 set(EXEC	app_exec)
 set(SRC
 		${EXEC}.cpp app_fcalls.cpp app_essentialops.cpp app_exception.cpp
-        example_exam/app_example_exam.cpp app_copy.cpp app_hierarchies.cpp app_poly1.cpp app_poly2.cpp)
+        example_exam/app_example_exam_2021_1.cpp example_exam/app_example_exam_2021_2.cpp app_copy.cpp app_hierarchies.cpp app_poly1.cpp app_poly2.cpp)
 #---------------------
 include_directories(${LOG_SRC})
 add_executable(${EXEC}	   ${SRC})
@@ -66,7 +66,7 @@ target_link_libraries(${EXEC} demobj tracer ${G3LOG_LIBRARIES} )
 #---------------------
 install(TARGETS ${EXEC} RUNTIME DESTINATION 	${BIN_INSTALL_LOCATION})
 #------------------------
-set(PROJECTS   app_fcalls app_essential_ops app_exception app_example_exam
+set(PROJECTS   app_fcalls app_essential_ops app_exception app_example_exam_2021_1 app_example_exam_2021_2
 				app_copy app_hierarchies app_poly1 app_poly2)
 foreach (PROJ ${PROJECTS})
 		add_test(NAME  app_exec_${PROJ}

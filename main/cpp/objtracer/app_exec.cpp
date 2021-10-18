@@ -68,7 +68,8 @@ int main(int argc, char* argv[])
                 f_reg["app_hierarchies"] = app_hierarchies;
                 f_reg["app_poly1"] = app_poly1;
                 f_reg["app_poly2"] = app_poly2;
-                f_reg["app_example_exam"] = app_example_exam;
+                f_reg["app_example_exam_2021_1"] = app_example_exam_2021_1;
+                f_reg["app_example_exam_2021_2"] = app_example_exam_2021_2;
 
                 //----------------------------------------------------------------------
                 // Set demo to execute

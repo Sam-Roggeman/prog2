@@ -15,7 +15,7 @@
 
 using namespace tracing_example_exam;
 
-int app_example_exam()
+int app_example_exam_2021_1()
 {
         COMP_MISC_FUNCTION_TRACER;
         {
