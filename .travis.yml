@@ -45,21 +45,6 @@ matrix:
       env: CXX_NAME='clang++-6.0'
       addons: {apt: { packages: [*default_packages, clang-6.0], sources: [*default_sources, llvm-toolchain-trusty-6.0]}}
 
-    - os: osx
-      osx_image: xcode8.3
-      compiler: clang
-      env: CXX_NAME='c++'
-
-    - os: osx
-      osx_image: xcode9.2
-      compiler: clang
-      env: CXX_NAME='c++'
-
-    - os: osx
-      osx_image: xcode9.2
-      compiler: clang
-      env: CXX_NAME='clang++'
-
 before_install:
   # Check commit matches expected commit (because of Travis bug)
   - if [[ "$TRAVIS_COMMIT" != "$(git rev-parse HEAD)" ]]; then echo "Commit doesn't match expected $TRAVIS_COMMIT"; fi
@@ -72,13 +57,6 @@ before_install:
   - export CXX=$CXX_NAME
 
 install:
-    #--------- OSX
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew upgrade cmake
-      brew install ccache
-    fi
-    #--------- All platforms
   - |
     #			BOOST_ROOT: specify where cmake can find the correct version of boost
     #			BOOST_NO_SYSTEM_PATHS: should be ON to prevent mixing different versions of boost
@@ -102,12 +80,3 @@ install:
 
 script:
   - make all && make test
-
-after_success:
-    # Generate the docs only if master, the travis_build_docs is true and we can use secure variables
-  - |
-    if [[ "$TRAVIS_BRANCH" = "master" && "$TRAVIS_BUILD_DOCS" = "true" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then
-      cd $TRAVIS_BUILD_DIR
-      chmod +x resources/sh/generate-doxygen.sh
-      resources/sh/generate-doxygen.sh
-    fi
